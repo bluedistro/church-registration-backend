@@ -58,11 +58,7 @@ def upload_file():
             print('No selected file')
         if file:
             filename = secure_filename(file.filename)
-            if os.path.isdir(app.config['UPLOAD_FOLDER']):
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            else:
-                os.mkdir('images')
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return json.dumps({'success': True}), 200, {'ContentType':'application/json'}        
 
 @app.route('/api/uploadSuccess', methods=['GET', 'POST'])
@@ -75,7 +71,7 @@ def finished():
 def base64Encoder(UPLOAD_FOLDER=UPLOAD_FOLDER):
     image_directory = os.listdir(UPLOAD_FOLDER)
     if len(os.listdir(UPLOAD_FOLDER)) > 0:
-        image_path = os.listdir(UPLOAD_FOLDER)[0]
+        image_path = os.listdir(UPLOAD_FOLDER)[1]
         full_path = os.path.join(UPLOAD_FOLDER, image_path)
         with open(full_path, 'rb') as imageFile:
             stringedImage = base64.b64encode(imageFile.read())
