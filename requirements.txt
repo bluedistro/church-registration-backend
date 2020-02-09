@@ -2,5 +2,4 @@ flask
 requests
 gunicorn
 jsonify
-base64
 flask_cors
