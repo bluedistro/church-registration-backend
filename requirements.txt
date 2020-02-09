@@ -3,3 +3,4 @@ requests
 gunicorn
 jsonify
 flask_cors
+pymongo
