@@ -13,7 +13,7 @@ db = ChurchDB()
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-cors = CORS(app, resources={r"/api/*": {"origins": "https://serene-dijkstra-1e3805.netlify.com/"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/api/test', methods=['GET', 'POST'])
