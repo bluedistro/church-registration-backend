@@ -8,8 +8,8 @@ def error_print(*args, **kwargs):
 
 
 _DBNAME = "churchdb"
-_CONNECTIONHOST = "mongodb://localhost:27017/"
-
+_CONNECTIONHOST = "mongodb+srv://romann:Kewl4life!@cluster0-z81ow.mongodb.net/test?retryWrites=true&w=majority"
+# _CONNECTIONHOST = "mongodb://localhost:27017/"
 
 class ChurchDB:
     def __init__(self):

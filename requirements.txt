@@ -4,3 +4,4 @@ gunicorn
 jsonify
 flask_cors
 pymongo
+pymongo[srv]
