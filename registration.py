@@ -20,7 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def test():
     if request.method == 'GET':
-        return json.dumps({'him': 'dance'})
+        return json.dumps({'him': 'dance', 'other': os.path.isdir('images')})
 
 @app.route('/api/login', methods=['GET', 'POST'])
 @cross_origin()
@@ -57,7 +57,6 @@ def upload_file():
         if file.filename == '':
             print('No selected file')
         if file:
-            print('file here')
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return json.dumps({'success': True}), 200, {'ContentType':'application/json'}        
@@ -66,7 +65,6 @@ def upload_file():
 @cross_origin()
 def finished():
     if request.method == 'POST':
-        print('success!!!!')
         return json.dumps({'success': True}), 200, {'ContentType':'application/json'}
 
 # read image in folder and convert to base64
