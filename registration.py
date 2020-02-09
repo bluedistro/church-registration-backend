@@ -65,6 +65,7 @@ def upload_file():
 @cross_origin()
 def finished():
     if request.method == 'POST':
+        print('success!!!!')
         return json.dumps({'success': True}), 200, {'ContentType':'application/json'}
 
 # read image in folder and convert to base64
