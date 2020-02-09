@@ -17,13 +17,13 @@ cors = CORS(app, resources={r"/api/*": {"origins": "https://serene-dijkstra-1e38
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/api/test', methods=['GET', 'POST'])
-@cross_origin()
+@cross_origin(headers=['Content-Type'], origins="https://serene-dijkstra-1e3805.netlify.com")
 def test():
     if request.method == 'GET':
         return json.dumps({'him': 'dance', 'other': os.path.isdir('images')})
 
 @app.route('/api/login', methods=['GET', 'POST'])
-@cross_origin()
+@cross_origin(headers=['Content-Type'], origins="https://serene-dijkstra-1e3805.netlify.com")
 def login():
     content = request.get_json(silent=True)
     if content['username'] == 'username' and content['password'] == 'password':
@@ -32,7 +32,7 @@ def login():
         return json.dumps({'success': False}), 200, {'ContentType':'application/json'}
 
 @app.route('/api/register', methods=['GET', 'POST'])
-@cross_origin()
+@cross_origin(headers=['Content-Type'], origins="https://serene-dijkstra-1e3805.netlify.com")
 def register():
     content = request.get_json(silent=True)
     passport_img = base64Encoder()
@@ -50,7 +50,7 @@ def register():
         return json.dumps({'success': False}), 402, {'ContentType':'application/json'}
 
 @app.route('/api/upload', methods=['GET', 'POST'])
-@cross_origin()
+@cross_origin(headers=['Content-Type'], origins="https://serene-dijkstra-1e3805.netlify.com")
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
@@ -63,7 +63,7 @@ def upload_file():
             return json.dumps({'success': True}), 200, {'ContentType':'application/json'}        
 
 @app.route('/api/uploadSuccess', methods=['GET', 'POST'])
-@cross_origin()
+@cross_origin(headers=['Content-Type'], origins="https://serene-dijkstra-1e3805.netlify.com")
 def finished():
     if request.method == 'POST':
         return json.dumps({'success': True}), 200, {'ContentType':'application/json'}
