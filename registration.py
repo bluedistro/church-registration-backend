@@ -16,6 +16,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+@app.route('/api/test', methods=['GET', 'POST'])
+@cross_origin()
+def test():
+    if request.method == 'GET':
+        return json.dumps({'him': 'dance'})
+
 @app.route('/api/login', methods=['GET', 'POST'])
 @cross_origin()
 def login():
