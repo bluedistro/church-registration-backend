@@ -57,6 +57,7 @@ def upload_file():
         if file.filename == '':
             print('No selected file')
         if file:
+            print('OKAY FILE')
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return json.dumps({'success': True}), 200, {'ContentType':'application/json'}        
