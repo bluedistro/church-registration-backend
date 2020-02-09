@@ -1,14 +1,17 @@
 import base64, os
 dir_path = 'images'
 def base64Encoder(dir_path):
+    image_types = ['png', 'jpg', 'jpeg']
     image_directory = os.listdir(dir_path)
-    if len(os.listdir(dir_path)) > 0:
-        image_path = os.listdir(dir_path)[0]
-        full_path = os.path.join(dir_path, image_path)
-        with open(full_path, 'rb') as imageFile:
-            str = base64.b64encode(imageFile.read())
-        os.remove(full_path)
-        return str
+    if len(image_directory) > 0:
+        for img in image_directory:
+            img_type = img[::-1].split('.')[0].lower()[::-1]
+            if img_type in image_types:     
+                full_path = os.path.join(dir_path, img)
+                with open(full_path, 'rb') as imageFile:
+                    str = base64.b64encode(imageFile.read())
+                os.remove(full_path)
+                return str
     else:
         return 'empty directory'
 

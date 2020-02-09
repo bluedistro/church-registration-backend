@@ -70,14 +70,17 @@ def finished():
 
 # read image in folder and convert to base64
 def base64Encoder(UPLOAD_FOLDER=UPLOAD_FOLDER):
+    image_types = ['png', 'jpeg', 'jpeg']
     image_directory = os.listdir(UPLOAD_FOLDER)
-    if len(os.listdir(UPLOAD_FOLDER)) > 0:
-        image_path = os.listdir(UPLOAD_FOLDER)[1]
-        full_path = os.path.join(UPLOAD_FOLDER, image_path)
-        with open(full_path, 'rb') as imageFile:
-            stringedImage = base64.b64encode(imageFile.read())
-        os.remove(full_path)
-        return stringedImage # store returned string to database
+    if len(image_directory) > 0:
+        for img in image_directory:
+            img_type = img[::-1].split('.')[0].lower()[::-1]
+            if img_type in image_types:   
+                full_path = os.path.join(UPLOAD_FOLDER, img)
+                with open(full_path, 'rb') as imageFile:
+                    stringedImage = base64.b64encode(imageFile.read())
+                os.remove(full_path)
+                return stringedImage # store returned string to database
     else:
         return 'empty directory'
 
