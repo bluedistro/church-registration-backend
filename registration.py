@@ -58,7 +58,11 @@ def upload_file():
             print('No selected file')
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            if os.path.isdir(app.config['UPLOAD_FOLDER']):
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            else:
+                os.mkdir('images')
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return json.dumps({'success': True}), 200, {'ContentType':'application/json'}        
 
 @app.route('/api/uploadSuccess', methods=['GET', 'POST'])
